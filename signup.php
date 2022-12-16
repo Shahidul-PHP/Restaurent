@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 
@@ -24,17 +28,31 @@
                                     <h2 class="mb-3 text-center">Restaurent - Create Account</h2>
                                     <h4 class="text-center mb-4">Sign up in your account</h4>
                                     <form action="signup_post.php" method="POST">
-                                        <div class="form-group">
+                                        <div class="form-group mb-3">
                                             <label><strong>Username</strong></label>
-                                            <input type="text" class="form-control" placeholder="username">
+                                            <input name="name" type="text" class="form-control"  value="<?= isset($_SESSION['name_value_error']) ? $_SESSION['name_value_error'] : '' ?>">
+
+                                            <?php if (isset($_SESSION['nameError'])) { ?>
+                                                <strong class=" text-danger"><?= $_SESSION['nameError'] ?></strong>
+                                            <?php }
+                                            unset($_SESSION['nameError']) ?>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group mb-3">
                                             <label><strong>Email</strong></label>
-                                            <input type="email" class="form-control" placeholder="Email Address">
+                                            <input name="email" type="email" class="form-control"  value="<?= isset($_SESSION['mail_value_error']) ? $_SESSION['mail_value_error'] : '' ?>">
+
+                                            <?php if (isset($_SESSION['mailError'])) { ?>
+                                                <strong class="text-danger"><?= $_SESSION['mailError'] ?></strong>
+                                            <?php }
+                                            unset($_SESSION['mailError']) ?>
                                         </div>
                                         <div class="form-group">
                                             <label><strong>Password</strong></label>
-                                            <input type="password" class="form-control">
+                                            <input name="password" type="password" class="form-control">
+                                            <?php if (isset($_SESSION['passError'])) { ?>
+                                                <strong class="text-danger"><?= $_SESSION['passError'] ?></strong>
+                                            <?php }
+                                            unset($_SESSION['passError']) ?>
                                         </div>
                                         <div class="text-center mt-4">
                                             <button type="submit" class="btn btn-primary btn-block">Create Account</button>
@@ -61,3 +79,8 @@
 </body>
 
 </html>
+
+<?php
+unset($_SESSION['name_value_error']);
+unset($_SESSION['mail_value_error']);
+?>

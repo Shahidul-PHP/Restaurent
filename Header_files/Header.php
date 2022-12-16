@@ -1,3 +1,11 @@
+<?php
+$id = $_SESSION['id'];
+
+$select_admin_header = "SELECT * FROM all_users_list WHERE id=$id";
+$result_header = mysqli_query($db_connection, $select_admin_header);
+$assoc_header = mysqli_fetch_assoc($result_header);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,10 +16,10 @@
     <title>Restaurent Admin</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="Dashboard_files/images/favicon.png">
-    <link rel="stylesheet" href="Dashboard_files/vendor/owl-carousel/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="Dashboard_files/vendor/owl-carousel/css/owl.theme.default.min.css">
-    <link href="Dashboard_files/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
-    <link href="Dashboard_files/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/Restaurent/Dashboard_files/vendor/owl-carousel/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/Restaurent/Dashboard_files/vendor/owl-carousel/css/owl.theme.default.min.css">
+    <link href="/Restaurent/Dashboard_files/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
+    <link href="/Restaurent/Dashboard_files/css/style.css" rel="stylesheet">
 
 
 
@@ -43,7 +51,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="index.html" class="brand-logo">
+            <a href="index.php" class="brand-logo">
                 <img class="logo-abbr" src="Dashboard_files/images/logo.png" alt="">
                 <img class="logo-compact" src="Dashboard_files/images/logo-text.png" alt="">
                 <img class="brand-title" src="Dashboard_files/images/logo-text.png" alt="">
@@ -153,7 +161,7 @@
                                         <i class="icon-envelope-open"></i>
                                         <span class="ml-2">Inbox </span>
                                     </a>
-                                    <a href="./page-login.html" class="dropdown-item">
+                                    <a href="logout.php" class="dropdown-item">
                                         <i class="icon-key"></i>
                                         <span class="ml-2">Logout </span>
                                     </a>
@@ -178,19 +186,11 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a>
                         <ul aria-expanded="false">
                             <li><a href="Dashboard.php">Dashboard</a></li>
-                            <li><a href="#">Admin Profile</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- main nav for copy -->
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-app-store"></i><span class="nav-text">User Info</span></a>
-
-                        <ul aria-expanded="false">
-                            <li><a href="">User List</a>
+                            <li><a href="../../Restaurent/user_info/profile.php">Admin Profile</a></li>
+                            <li><a href="../../Restaurent/user_info/users.php">User List</a>
                             <li>
                         </ul>
                     </li>
-                    <!-- end -->
 
                 </ul>
             </div>

@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 
@@ -23,15 +28,23 @@
                                 <div class="auth-form">
                                     <h2 class="text-center mb-3">Restaurent Login</h2>
                                     <h4 class="text-center mb-4">Login in your account</h4>
-                                    
-                                    <form action="login_post.php"method="POST">
+
+                                    <form action="login_post.php" method="POST">
                                         <div class="form-group">
                                             <label><strong>Email</strong></label>
-                                            <input type="text" class="form-control" >
+                                            <input name="email" type="text" class="form-control">
+                                            <?php if (isset($_SESSION['error'])) { ?>
+                                                <strong class="text-danger"><?= $_SESSION['error'] ?></strong>
+                                            <?php }
+                                            unset($_SESSION['error']) ?>
                                         </div>
                                         <div class="form-group">
                                             <label><strong>Password</strong></label>
-                                            <input type="password" class="form-control">
+                                            <input name="password" type="password" class="form-control">
+                                            <?php if (isset($_SESSION['Passerror'])) { ?>
+                                                <strong class="text-danger"><?= $_SESSION['Passerror'] ?></strong>
+                                            <?php }
+                                            unset($_SESSION['Passerror']) ?>
                                         </div>
                                         <div class="form-row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
@@ -67,6 +80,23 @@
     <script src="Dashboard_files/vendor/global/global.min.js"></script>
     <script src="Dashboard_files/js/quixnav-init.js"></script>
     <script src="Dashboard_files/js/custom.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <?php if (isset($_SESSION['confirmation'])) { ?>
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '<?= $_SESSION['confirmation'] ?>',
+                showConfirmButton: false,
+                timer: 1800
+            })
+        </script>
+    <?php }
+    unset($_SESSION['confirmation']);
+    unset($_SESSION['login_value']);
+    ?>
 
 </body>
+
 </html>
